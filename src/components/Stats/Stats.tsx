@@ -1,3 +1,6 @@
+import {MOOD_CONFIG} from "../../types";
+import type { MoodLevel } from "../../types";
+
 interface StatsProps {
     streak: number
     average: number
@@ -6,10 +9,27 @@ interface StatsProps {
 
 export default function Stats({ streak, average, total }: StatsProps) {
 
+    const avgLevel = Math.round(average) as MoodLevel
+    const avgColor = average > 0 ? MOOD_CONFIG[avgLevel]?.color : 'bg-slate-600'
+
     const stats = [
-        { label: 'Day streak 🔥', value: streak },
-        { label: 'Average mood', value: average },
-        { label: 'Total entries', value: total },
+        {
+            label: 'Day streak',
+            value: streak,
+            icon: '🔥', accent: streak > 0 ? 'text-orange-400' :  'text-slate-400'
+        },
+        {
+            label: 'Average mood',
+            value: average || '-',
+            icon: average > 0 ? MOOD_CONFIG[avgLevel]?.emoji : '😶',
+            accent: average > 0 ? 'text-white' : 'text-slate-400'
+        },
+        {
+            label: 'Total entries',
+            value: total,
+            icon: '📅',
+            accent: total > 0 ? 'text-blue-400' : 'text-slate-400'
+        },
     ]
 
     return (
