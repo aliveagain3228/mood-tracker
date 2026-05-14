@@ -10,13 +10,12 @@ interface StatsProps {
 export default function Stats({ streak, average, total }: StatsProps) {
 
     const avgLevel = Math.round(average) as MoodLevel
-    const avgColor = average > 0 ? MOOD_CONFIG[avgLevel]?.color : 'bg-slate-600'
 
     const stats = [
         {
             label: 'Day streak',
             value: streak,
-            icon: '🔥', accent: streak > 0 ? 'text-orange-400' :  'text-slate-400'
+            icon: '🔥', accent: streak > 0 ? 'text-orange-400' : 'text-slate-400'
         },
         {
             label: 'Average mood',
@@ -35,8 +34,9 @@ export default function Stats({ streak, average, total }: StatsProps) {
     return (
         <div className="grid grid-cols-3 gap-4">
             {stats.map(stat => (
-                <div key={stat.label} className="bg-slate-900 rounded-2xl p-5 text-center">
-                    <p className="text-3xl font-bold text-white">{stat.value}</p>
+                <div key={stat.label} className="bg-white dark:bg-slate-900 rounded-2xl p-5 text-center shadow-sm">
+                    <div className="text-2xl mb-1">{stat.icon}</div>
+                    <p className={`text-3xl font-bold ${stat.accent}`}>{stat.value}</p>
                     <p className="text-slate-400 text-sm mt-1">{stat.label}</p>
                 </div>
             ))}

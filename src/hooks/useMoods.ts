@@ -3,11 +3,15 @@ import type { MoodEntry, MoodLevel } from "../types";
 
 const STORAGE_KEY = 'mood-entries'
 
-export default function useMoods() {
+export function useMoods() {
     const [entries, setEntries] = useState<MoodEntry[]>(() => {
         const saved = localStorage.getItem(STORAGE_KEY)
         return saved ? JSON.parse(saved) : []
     })
+
+    const deleteEntry = (date: string) => {
+        setEntries(prev => prev.filter(e => e.date !== date))
+    }
 
     useEffect(() => {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(entries))
@@ -58,5 +62,5 @@ export default function useMoods() {
         return Math.round((sum / entries.length) * 10) / 10
     }
 
-    return { entries, todayEntry, setMood, getStreak, getAverage, today }
+    return { entries, todayEntry, setMood, deleteEntry, getStreak, getAverage, today }
 }

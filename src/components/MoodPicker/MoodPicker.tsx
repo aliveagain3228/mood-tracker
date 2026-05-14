@@ -13,7 +13,7 @@ export default function MoodPicker({ todayEntry, onSelect }: MoodPickerProps) {
     const [note, setNote] = useState(todayEntry?.note ?? '')
     const [showNote, setShowNote] = useState(false)
 
-    const hadleSelect = (level: MoodLevel) => {
+    const handleSelect = (level: MoodLevel) => {
         onSelect(level, note || undefined)
     }
 
@@ -24,7 +24,7 @@ export default function MoodPicker({ todayEntry, onSelect }: MoodPickerProps) {
     }
 
     return (
-        <div className="bg-slate-900 rounded-2xl p-6">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6">
             <h2 className="text-lg font-semibold mb-4 text-center">
                 {todayEntry
                     ? `Today: ${MOOD_CONFIG[todayEntry.level].emoji} ${MOOD_CONFIG[todayEntry.level].label}`
@@ -40,7 +40,7 @@ export default function MoodPicker({ todayEntry, onSelect }: MoodPickerProps) {
                     return (
                         <motion.button
                             key={key}
-                            onClick={() => onSelect(level)}
+                            onClick={() => handleSelect(level)}
                             whileHover={{ scale: 1.15 }}
                             whileTap={{ scale: 0.9 }}
                             animate={isSelected ? { y: -4 } : { y: 0 }}
@@ -49,8 +49,8 @@ export default function MoodPicker({ todayEntry, onSelect }: MoodPickerProps) {
                             flex flex-col items-center gap-1 p-3 rounded-xl
                             transition-colors cursor-pointer border-2
                             ${isSelected
-                                ? 'border-white bg-slate-700'
-                                : 'border-transparent bg-slate-800 hover:bg-slate-700'
+                                ? 'border-slate-900 dark:border-white bg-slate-200 dark:bg-slate-700'
+                                : 'border-transparent bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700'
                             }
                             `}
                         >
