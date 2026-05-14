@@ -5,6 +5,7 @@ import Stats from "./components/Stats/Stats.tsx";
 import { motion } from "framer-motion";
 import History from "./components/History/History.tsx";
 import { useTheme } from './hooks/useTheme.ts'
+import MoodChart from "./components/MoodChart/MoodChart.tsx";
 
 export default function App() {
     const { entries, todayEntry, setMood, deleteEntry, getStreak, getAverage, today } = useMoods()
@@ -44,7 +45,9 @@ export default function App() {
                     <MoodPicker key="picker" todayEntry={todayEntry} onSelect={setMood} />,
                     <Stats key="stats" streak={getStreak()} average={getAverage()} total={entries.length} />,
                     <HeatMap key="heatmap" entries={entries} today={today} />,
-                    <History key="history" entries={entries} onDelete={deleteEntry} />
+                    <History key="history" entries={entries} onDelete={deleteEntry} />,
+                    <MoodChart key="chart" entries={entries} />
+
                 ].map((component, index) => (
                     <motion.div
                         key={index}
