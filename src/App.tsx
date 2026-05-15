@@ -12,8 +12,8 @@ export default function App() {
     const { theme, toggleTheme } = useTheme()
 
     return (
-        <div className="min-h-screen bg-slate-950 dark:bg-slate-950 text-white transition-colors duration-300">
-            <header className="py-8 text-center border-b border border-slate-800">
+        <div className="min-h-screen bg-slate-100 dark:bg-slate-950 dark:text-white transition-colors duration-300">
+            <header className="py-8 text-center border-b border border-slate-100 dark:border-slate-800 dark:bg-slate-950 transition-colors">
                 <div className="max-w-2xl mx-auto flex items-center justify-between">
                     <div>
                 <motion.h1
@@ -32,7 +32,7 @@ export default function App() {
 
                 <button
                     onClick={toggleTheme}
-                    className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors text-xl"
+                    className="p-2 rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors text-xl"
                     title="Toggle Theme"
                 >
                     {theme === 'dark' ? '☀️' : '🌙'}
