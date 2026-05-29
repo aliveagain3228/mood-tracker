@@ -1,73 +1,42 @@
-# React + TypeScript + Vite
+# 📊 Mood Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Track your daily mood and visualize emotional patterns over time.
 
-Currently, two official plugins are available:
+## 🔗 Live Demo
+[mood-tracker.vercel.app](https://aliveagain3228.github.io/mood-tracker/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Features
+- **Daily mood logging** — 5 levels with emoji (😞→😄)
+- **90-day heatmap** — GitHub-style visualization
+- **Streak tracking** — consecutive days counter
+- **Notes** — add context to each day
+- **Light/Dark theme** — persisted preference
+- **Offline-ready** — localStorage, works without internet
 
-## React Compiler
+## 🛠 Stack
+| Tool | Purpose |
+|------|---------|
+| React 19 + TypeScript | Core framework |
+| Tailwind CSS v4 | Styling |
+| Framer Motion | Animations |
+| Recharts | Mood chart |
+| Vite | Build tool |
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ⚙️ Run locally
+\`\`\`bash
+npm install
+npm run dev
+\`\`\`
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📁 Structure
+\`\`\`
+src/
+  types/        — MoodLevel, MoodEntry, MOOD_CONFIG
+  hooks/        — useMoods (CRUD + streak), useTheme
+  components/
+    MoodPicker/ — daily mood selection with note
+    HeatMap/    — 90-day grid with tooltip
+    MoodChart/  — 14-day line chart (recharts)
+    Stats/      — streak, average, total
+    History/    — last 7 entries with delete
+\`\`\`
